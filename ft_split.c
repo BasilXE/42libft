@@ -6,7 +6,7 @@
 /*   By: basayoub <basayoub@student.42amman.com>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/10/03 16:52:06 by basayoub          #+#    #+#             */
-/*   Updated: 2026/10/06 17:09:05 by basayoub         ###   ########.fr       */
+/*   Updated: 2026/10/06 17:22:38 by basayoub         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -105,7 +105,7 @@ char	**ft_split(char const *s, char c)
 int	main()
 {
 	char		l = '-';
-	const char	*sp = "--hello---world---";
+	const char	*sp = "-hello---world---";
 	char		**new;
 
 	new = ft_split(sp, l);
@@ -113,7 +113,7 @@ int	main()
 
 	while (new[i])
 	{
-	printf("%s\n", new[i]);
-	i++;
+		printf("%s\n", new[i]);
+		i++;
 	}
 }
