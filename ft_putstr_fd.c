@@ -1,30 +1,32 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_strlen.c                                        :+:      :+:    :+:   */
+/*   ft_putstr_fd.c                                     :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: basayoub <basayoub@student.42amman.com>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2026/09/22 14:49:57 by basayoub          #+#    #+#             */
-/*   Updated: 2026/10/03 15:35:16 by basayoub         ###   ########.fr       */
+/*   Created: 2026/10/06 14:23:29 by basayoub          #+#    #+#             */
+/*   Updated: 2026/10/06 15:29:00 by basayoub         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libft.h"
 
-int	ft_strlen(const char *str)
+void	ft_putstr_fd(char *s, int fd)
 {
-	int	j;
+	int	i;
 
-	j = 0;
-	while (str[j] != '\0')
+	i = 0;
+	while (s[i])
 	{
-		j++;
+		write(fd, &s[i], 1);
+		i++;
 	}
-	return (j);
 }
-/*int main()
+/*
+int main()
 {
-	const char *p = "123456";
-	printf(": %d",ft_strlen(p));
+	char *d;
+	d = "the hell";
+	ft_putstr_fd(d,1);
 }*/

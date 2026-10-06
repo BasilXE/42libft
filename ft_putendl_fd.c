@@ -1,30 +1,33 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_strlen.c                                        :+:      :+:    :+:   */
+/*   ft_putendl_fd.c                                    :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: basayoub <basayoub@student.42amman.com>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2026/09/22 14:49:57 by basayoub          #+#    #+#             */
-/*   Updated: 2026/10/03 15:35:16 by basayoub         ###   ########.fr       */
+/*   Created: 2026/10/06 14:39:40 by basayoub          #+#    #+#             */
+/*   Updated: 2026/10/06 15:44:21 by basayoub         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libft.h"
 
-int	ft_strlen(const char *str)
+void ft_putendl_fd(char *s, int fd)
 {
-	int	j;
+	int	i;
 
-	j = 0;
-	while (str[j] != '\0')
+	i = 0;
+	while (s[i])
 	{
-		j++;
+		write(fd, &s[i], 1);
+		i++;
 	}
-	return (j);
+    write(fd, "\n",1);
 }
 /*int main()
 {
-	const char *p = "123456";
-	printf(": %d",ft_strlen(p));
+	char *d;
+	d = "the hell";
+	ft_putendl_fd(d,1);
+   // printf("the returned : %d", ft_putendl_fd(d,0));
 }*/

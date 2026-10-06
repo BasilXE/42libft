@@ -1,30 +1,23 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_strlen.c                                        :+:      :+:    :+:   */
+/*   ft_putchar_fd.c                                    :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: basayoub <basayoub@student.42amman.com>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2026/09/22 14:49:57 by basayoub          #+#    #+#             */
-/*   Updated: 2026/10/03 15:35:16 by basayoub         ###   ########.fr       */
+/*   Created: 2026/10/06 14:18:52 by basayoub          #+#    #+#             */
+/*   Updated: 2026/10/06 14:23:00 by basayoub         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libft.h"
 
-int	ft_strlen(const char *str)
+void ft_putchar_fd(char c, int fd)
 {
-	int	j;
-
-	j = 0;
-	while (str[j] != '\0')
-	{
-		j++;
-	}
-	return (j);
+        write(fd, &c, 1);    
 }
 /*int main()
 {
-	const char *p = "123456";
-	printf(": %d",ft_strlen(p));
+        ft_putchar_fd('a', 1);
+        return (0);
 }*/
