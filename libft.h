@@ -6,7 +6,7 @@
 /*   By: basayoub <basayoub@student.42amman.com>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/09/20 18:44:58 by basayoub          #+#    #+#             */
-/*   Updated: 2026/10/06 15:53:45 by basayoub         ###   ########.fr       */
+/*   Updated: 2026/10/10 18:36:44 by basayoub         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,6 +21,11 @@
 #include <ctype.h>
 #include <unistd.h>
 #include <bsd/string.h>
+typedef struct s_list
+{
+    void *content;
+    struct s_list *next;
+}   t_list;
 void    ft_bzero(void *str , size_t len);
 void	*ft_memchr(const void *s, int c, size_t n);
 int	ft_memcmp(const void *s1, const void *s2, size_t n);

@@ -5,107 +5,118 @@
 /*                                                    +:+ +:+         +:+     */
 /*   By: basayoub <basayoub@student.42amman.com>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2026/10/03 16:52:06 by basayoub          #+#    #+#             */
-/*   Updated: 2026/10/06 17:22:38 by basayoub         ###   ########.fr       */
+/*   Created: 2026/10/10 14:52:42 by basayoub          #+#    #+#             */
+/*   Updated: 2026/10/10 17:03:11 by basayoub         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libft.h"
 
-char	**plt(const char *s, char **splits, char c)
-{
-	int	i;
-	int	j;
-	int	k;
-
-	j = 0;
-	i = 0;
-	k = 0;
-	while (s[j] != '\0')
-	{
-		if (s[j] != c )
-		{
-			
-			splits[i][k] = s[j];
-			k++;
-		}
-		else if (s[j] == c && s[j + 1] != c)
-		{
-			splits[i][k] = '\0';
-			i++;
-			k = 0;
-		}
-		j++;
-	}
-	splits[j] = NULL;
-	return (splits);
-}
-
-int	counter(const char *s, char c)
+int	counter(char const *s, char c)
 {
 	int	i;
 	int	count;
 
 	count = 0;
 	i = 0;
-	if (s == NULL)
-		return ('\0');
-	while (s[i] != '\0')
+	while (s[i])
 	{
-		if (s[i] != c && ( s[i - 1] == c || i == 0))
+		if (s[i] != c && (i == 0 || s[i - 1] == c))
 			count++;
 		i++;
 	}
 	return (count);
 }
 
-char	**aloc(char **splits, int i)
+char	**checker(char **split, int i, int len)
 {
-	if (!splits[i])
+	split[i] = malloc (len + 1);
+	if (!split[i])
 	{
 		while (i > 0)
 		{
 			i--;
-			free(splits[i]);
+			free(split[i]);
 		}
-		free(splits);
+		free(split);
 		return (NULL);
 	}
-	return (splits);
+	return (split);
+}
+
+int	lenofword(char const *s, char c, char **split)
+{
+	int	i;
+	int	len;
+	int	j;
+
+	i = 0;
+	j = 0;
+	while (s[i])
+	{
+		len = 0;
+		if (s[i] != c && (i == 0 || s[i - 1] == c))
+		{
+			while (s[i] && s[i] != c)
+			{
+				len++;
+				i++;
+			}
+			if (checker(split, j, len) == NULL)
+				return ('\0');
+			j++;
+		}
+		i++;
+	}
+	split[j] = NULL;
+	return (i);
+}
+
+char	**coopy(int i, char const *s, char c, char **split)
+{
+	int	j;
+	int	t;
+
+	j = 0;
+	while (s[i])
+	{
+		t = 0;
+		if (s[i] != c && (i == 0 || s[i - 1] == c))
+		{
+			while (s[i] && s[i] != c)
+			{
+				split[j][t] = s[i];
+				i++;
+				t++;
+			}
+			split[j][t] = '\0';
+			if (t > 0)
+			{
+				j++;
+				continue ;
+			}
+		}
+		i++;
+	}
+	return (split);
 }
 
 char	**ft_split(char const *s, char c)
 {
-	int		j;
-	int		count;
-	int		i;
-	char	**splits;
+	char	**split;
 
-	j = 0;
-	i = 0;
-	count = counter(s, c);
-	splits = malloc(sizeof(char *) * (count + 2));
-	if (!splits)
+	split = malloc(sizeof(char *) * (counter(s, c) + 1));
+	if (!split)
 		return (NULL);
-	while (s[j] != '\0')
-	{
-		if (s[j] != c && (j == 0 || s[j - 1] == c))
-		{
-			splits[i] = malloc(i);
-			aloc(splits, i);
-			i++;
-		}
-		j++;
-	}
-	splits[i] = malloc(j);
-	aloc(splits, i);
-	return (plt(s, splits, c));
+	if (!lenofword(s, c, split))
+		return (NULL);
+	split = coopy(0, s, c, split);
+	return (split);
 }
-
-int	main()
+/*int	main()
 {
 	char		l = '-';
-	const char	*sp = "-hello---world---";
+	const char	*sp = "-ksbvbsdjhvbhello-k--world---llll-";
 	char		**new;
 
 	new = ft_split(sp, l);
@@ -116,4 +127,4 @@ int	main()
 		printf("%s\n", new[i]);
 		i++;
 	}
-}
+}*/
