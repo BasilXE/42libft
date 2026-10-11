@@ -6,7 +6,7 @@
 /*   By: basayoub <basayoub@student.42amman.com>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/09/20 18:44:58 by basayoub          #+#    #+#             */
-/*   Updated: 2026/10/10 18:36:44 by basayoub         ###   ########.fr       */
+/*   Updated: 2026/10/11 17:47:45 by basayoub         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -51,5 +51,7 @@ char	*ft_strmapi(char const *s, char (*f)(unsigned int, char));
 void ft_putchar_fd(char c, int fd);
 void ft_putendl_fd(char *s, int fd);
 void    ft_putnbr_fd(int n, int fd);
-
+t_list *ft_lstnew(void *content);
+unsigned int ft_lstsize(t_list *lst);
+void ft_lstadd_front(t_list **lst, t_list *new);
 #endif
